@@ -1,9 +1,10 @@
-import { EmployeesTable } from '../components';
+import { EmployeesTable, FormEmployees } from '../components';
 
 const employees = (): JSX.Element => {
   return (
     <div>
       <EmployeesTable />
+      <FormEmployees />
     </div>
   );
 };
