@@ -1,5 +1,11 @@
+import { Upload } from '../components';
+
 const upload = (): JSX.Element => {
-  return <div>upload</div>;
+  return (
+    <div>
+      <Upload />
+    </div>
+  );
 };
 
 export default upload;
