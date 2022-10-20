@@ -1,5 +1,11 @@
+import { LoginForm } from '../components';
+
 const login = (): JSX.Element => {
-  return <div>login</div>;
+  return (
+    <div>
+      <LoginForm />
+    </div>
+  );
 };
 
 export default login;
