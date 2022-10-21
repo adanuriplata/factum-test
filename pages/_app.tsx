@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app';
 import { Header } from '../components';
 import { useRouter } from 'next/router';
 import { AuthProvider } from '../context/auth';
+import Footer from '../components/Footer';
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const router = useRouter();
@@ -12,6 +13,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
       <AuthProvider>
         {showHeader && <Header />}
         <Component {...pageProps} />
+        <Footer />
       </AuthProvider>
     </>
   );

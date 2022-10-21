@@ -1,18 +1,14 @@
-// import { useRouter } from 'next/router';
-// import { useContext, useEffect } from 'react';
 import { GetServerSideProps } from 'next';
-import { EmployeesTable, FormEmployees } from '../components';
+import { EmployeesTable, FormEmployees, Loader } from '../components';
+import { useGetEmployees } from '../hooks/useGetEmployees';
 import styles from '../styles/modules/Employees.module.scss';
-// import { AuthContext } from '../context';
 
 const Employees = (): JSX.Element => {
-  // const router = useRouter();
-  // const { isLogged } = useContext(AuthContext);
-
+  const { isLoading, employees } = useGetEmployees();
   return (
     <div className={styles.container}>
       <div className={styles.containerCard}>
-        <EmployeesTable />
+        {isLoading ? <Loader /> : <EmployeesTable employees={employees} />}
       </div>
       <div className={styles.containerCard}>
         <FormEmployees />

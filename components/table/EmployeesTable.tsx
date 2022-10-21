@@ -1,8 +1,14 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, FC, useState } from 'react';
 import { Search, Table } from '../../components';
-import { employees } from '../../demoData/employeesDB';
+import { Employee } from '../../types/Employee';
 
-export const EmployeesTable = (): JSX.Element => {
+interface EmployeesTableProps {
+  employees: Employee[];
+}
+
+export const EmployeesTable: FC<EmployeesTableProps> = ({
+  employees,
+}): JSX.Element => {
   const [queryTerm, setQueryTerm] = useState<string>('');
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {

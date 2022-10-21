@@ -29,7 +29,7 @@ export const LoginForm = (): JSX.Element => {
     e.preventDefault();
     const isValidUser = loginUser(data.user, data.pass);
     if (!isValidUser) {
-      alert('error');
+      alert(' 🛑 Wrong Password or User 🛑 ');
       return;
     }
     void router.replace('/employees');

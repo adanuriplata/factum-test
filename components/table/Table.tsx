@@ -30,9 +30,9 @@ export const Table: FC<TableProps> = ({ Employees }): JSX.Element => {
         <thead>
           <tr>
             <th scope="col">Id</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Apellido</th>
-            <th scope="col">Fecha de Nacimiento</th>
+            <th scope="col">Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Birthdate</th>
           </tr>
         </thead>
         <tbody>

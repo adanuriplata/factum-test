@@ -11,7 +11,7 @@ export const Search: FC<SearchProps> = ({ handleChange }): JSX.Element => {
       <h3>Employees</h3>
       <label htmlFor="serachEmployee">
         <input
-          placeholder="🔎 Buscar"
+          placeholder="🔎 Search"
           type="text"
           name="serachEmployee"
           onChange={(e) => handleChange(e)}

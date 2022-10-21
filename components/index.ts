@@ -7,3 +7,4 @@ export * from './FormEmployees';
 export * from './login/LoginForm';
 export * from './Upload';
 export * from './PreviewUpload';
+export * from './Loader';
