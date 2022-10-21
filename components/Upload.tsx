@@ -79,11 +79,11 @@
 //     </form>
 //   );
 // };
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 export const Upload = (): JSX.Element => {
   const [ImagePrevious, setImagePrevious] = useState([]);
-  const changeImage = (e) => {
-    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+  const changeImage = (e: ChangeEvent<HTMLInputElement>) => {
+    // const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
 
     // if (!allowedExtensions.exec(e.target.files[0])) {
     //   alert('Invalid file type');

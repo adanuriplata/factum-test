@@ -1,6 +1,10 @@
-import { ChangeEvent, useState } from 'react';
+import { useRouter } from 'next/router';
+import { ChangeEvent, useContext, useState } from 'react';
+import { AuthContext } from '../../context';
 
 export const LoginForm = (): JSX.Element => {
+  const router = useRouter();
+  const { loginUser } = useContext(AuthContext);
   const [data, setData] = useState({
     user: '',
     pass: '',
@@ -22,7 +26,12 @@ export const LoginForm = (): JSX.Element => {
 
   const handleSubmit = (e: React.SyntheticEvent): void => {
     e.preventDefault();
-    console.log(data);
+    const isValidUser = loginUser(data.user, data.pass);
+    if (!isValidUser) {
+      alert('error');
+      return;
+    }
+    void router.replace('/employees');
   };
 
   return (
