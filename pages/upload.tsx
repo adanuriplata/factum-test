@@ -1,10 +1,14 @@
 import { GetServerSideProps } from 'next';
 import { Upload } from '../components';
+import styles from '../styles/modules/Employees.module.scss';
 
 const upload = (): JSX.Element => {
   return (
-    <div>
-      <Upload />
+    <div className={styles.container}>
+      <div className={styles.containerCard}>
+        <h3>Upload File</h3>
+        <Upload />
+      </div>
     </div>
   );
 };
