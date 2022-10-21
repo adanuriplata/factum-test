@@ -36,7 +36,6 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   };
 
   const logOutUser = (): void => {
-    console.log('logout...');
     dispatch({ type: '[Auth] - Logout' });
     Cookies.remove('token');
     router.reload();

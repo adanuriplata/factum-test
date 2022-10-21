@@ -33,7 +33,6 @@ export const Upload = (): JSX.Element => {
     reader.onload = (e) => {
       e.preventDefault();
       setImagePreview([...ImagePreview, e.target?.result as unknown as Blob]);
-      console.log(ImagePreview);
     };
   };
 

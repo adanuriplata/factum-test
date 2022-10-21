@@ -14,7 +14,6 @@ export const LoginForm = (): JSX.Element => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const keyProp = e.target.name;
     const value = e.target.value;
-    console.log(keyProp);
     switch (keyProp) {
       case 'user':
         setData({ ...data, user: value });

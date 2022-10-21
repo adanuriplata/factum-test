@@ -49,7 +49,6 @@ export const FormEmployees = (): JSX.Element => {
       setIsErrorValidation(true);
       return;
     }
-    console.log(data);
 
     const resp = await postEmployee(data.nameEmp, data.lastName, data.birthday);
     setIsLoading(true);
