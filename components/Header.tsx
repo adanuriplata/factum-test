@@ -1,23 +1,18 @@
 import Link from 'next/link';
 import { useContext } from 'react';
 import { AuthContext } from '../context';
+import styles from '../styles/modules/Header.module.scss';
 
 export const Header = (): JSX.Element => {
-  const { isLogged, logOutUser } = useContext(AuthContext);
+  const { logOutUser } = useContext(AuthContext);
   return (
-    <div>
-      <ul>
-        {!isLogged ? (
-          <li>
-            <Link href="/login">
-              <a>Login</a>
-            </Link>
-          </li>
-        ) : (
-          <>
-            <li>
-              <span onClick={logOutUser}>LogOut</span>
-            </li>
+    <div className={styles.containerHeader}>
+      <div className={styles.wrapperHeader}>
+        <div className={styles.logo}>
+          <p>Factum Test</p>
+        </div>
+        <div>
+          <ul>
             <li>
               <Link href="/employees">
                 <a>Employees</a>
@@ -28,9 +23,12 @@ export const Header = (): JSX.Element => {
                 <a>Upload</a>
               </Link>
             </li>
-          </>
-        )}
-      </ul>
+            <li>
+              <span onClick={logOutUser}>LogOut</span>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };

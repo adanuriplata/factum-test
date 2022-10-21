@@ -1,4 +1,5 @@
 import { ChangeEvent, useState } from 'react';
+import styles from '../styles/modules/FormEmployees.module.scss';
 
 export const FormEmployees = (): JSX.Element => {
   const [data, setData] = useState({
@@ -29,35 +30,44 @@ export const FormEmployees = (): JSX.Element => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="nameEmp">
-          Nombre:
-          <input type="text" name="nameEmp" onChange={(e) => handleChange(e)} />
-        </label>
+    <div className={styles.loginWrap}>
+      <div className={styles.form}>
+        <h2>Add new employee</h2>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="nameEmp">
+              <input
+                placeholder="Name"
+                type="text"
+                name="nameEmp"
+                onChange={(e) => handleChange(e)}
+              />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="lastName">
+              <input
+                placeholder="Last Name"
+                type="text"
+                name="lastName"
+                onChange={(e) => handleChange(e)}
+              />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="birthday">
+              <input
+                type="date"
+                name="birthday"
+                onChange={(e) => handleChange(e)}
+              />
+            </label>
+          </div>
+          <div>
+            <button>Send</button>
+          </div>
+        </form>
       </div>
-      <div>
-        <label htmlFor="lastName">
-          Apellido:
-          <input
-            type="text"
-            name="lastName"
-            onChange={(e) => handleChange(e)}
-          />
-        </label>
-      </div>
-      <div>
-        <label htmlFor="birthday">
-          <input
-            type="date"
-            name="birthday"
-            onChange={(e) => handleChange(e)}
-          />
-        </label>
-      </div>
-      <div>
-        <button>Enviar</button>
-      </div>
-    </form>
+    </div>
   );
 };

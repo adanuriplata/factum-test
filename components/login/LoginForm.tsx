@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { ChangeEvent, useContext, useState } from 'react';
 import { AuthContext } from '../../context';
+import styles from '../../styles/modules/Login.module.scss';
 
 export const LoginForm = (): JSX.Element => {
   const router = useRouter();
@@ -35,46 +36,53 @@ export const LoginForm = (): JSX.Element => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="user">
-          Usuario:
-          <input
-            onPaste={(e) => {
-              e.preventDefault();
-              return false;
-            }}
-            onCopy={(e) => {
-              e.preventDefault();
-              return false;
-            }}
-            type="text"
-            name="user"
-            onChange={(e) => handleChange(e)}
-          />
-        </label>
+    <div className={styles.loginWrap}>
+      <div className={styles.form}>
+        <h2>Factum Test</h2>
+        <form className={styles.loginForm} onSubmit={handleSubmit}>
+          <div className={styles.group}>
+            <label className={styles.label} htmlFor="user">
+              <input
+                placeholder="nombre"
+                className={styles.input}
+                onPaste={(e) => {
+                  e.preventDefault();
+                  return false;
+                }}
+                onCopy={(e) => {
+                  e.preventDefault();
+                  return false;
+                }}
+                type="text"
+                name="user"
+                onChange={(e) => handleChange(e)}
+              />
+            </label>
+          </div>
+          <div className={styles.group}>
+            <label className={styles.label} htmlFor="pass">
+              <input
+                placeholder="password"
+                className={styles.input}
+                onPaste={(e) => {
+                  e.preventDefault();
+                  return false;
+                }}
+                onCopy={(e) => {
+                  e.preventDefault();
+                  return false;
+                }}
+                type="password"
+                name="pass"
+                onChange={(e) => handleChange(e)}
+              />
+            </label>
+          </div>
+          <div className={styles.group}>
+            <button>Ingresar</button>
+          </div>
+        </form>
       </div>
-      <div>
-        <label htmlFor="pass">
-          Password:
-          <input
-            onPaste={(e) => {
-              e.preventDefault();
-              return false;
-            }}
-            onCopy={(e) => {
-              e.preventDefault();
-              return false;
-            }}
-            type="password"
-            name="pass"
-            onChange={(e) => handleChange(e)}
-          />
-        </label>
-      </div>
-      <div>
-        <button>Enviar</button>
-      </div>
-    </form>
+    </div>
   );
 };

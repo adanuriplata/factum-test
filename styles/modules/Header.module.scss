@@ -1,0 +1,47 @@
+.containerHeader {
+  width: 100%;
+  background-color: white;
+}
+
+.wrapperHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 10px;
+  align-items: center;
+}
+
+.wrapperHeader ul {
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+  & li {
+    list-style: none;
+    cursor: pointer;
+    margin: 20px;
+    transition: all 0.3s;
+    display: inline-block;
+  }
+  & li:hover {
+    color: #4440db;
+  }
+
+  & li::after {
+    content: '';
+    width: 0px;
+    height: 1px;
+    display: block;
+    background: #4440db;
+    transition: all 0.3s;
+  }
+
+  & li:hover::after {
+    width: 100%;
+  }
+}
+
+.logo {
+  font-size: 19px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #4440db;
+}

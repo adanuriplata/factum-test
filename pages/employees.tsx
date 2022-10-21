@@ -2,6 +2,7 @@
 // import { useContext, useEffect } from 'react';
 import { GetServerSideProps } from 'next';
 import { EmployeesTable, FormEmployees } from '../components';
+import styles from '../styles/modules/Employees.module.scss';
 // import { AuthContext } from '../context';
 
 const Employees = (): JSX.Element => {
@@ -9,9 +10,13 @@ const Employees = (): JSX.Element => {
   // const { isLogged } = useContext(AuthContext);
 
   return (
-    <div>
-      <EmployeesTable />
-      <FormEmployees />
+    <div className={styles.container}>
+      <div className={styles.containerCard}>
+        <EmployeesTable />
+      </div>
+      <div className={styles.containerCard}>
+        <FormEmployees />
+      </div>
     </div>
   );
 };

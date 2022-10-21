@@ -21,9 +21,9 @@ export const EmployeesTable = (): JSX.Element => {
   });
 
   return (
-    <>
+    <div>
       <Search handleChange={handleChange} />
       <Table Employees={employeesToShow} />
-    </>
+    </div>
   );
 };

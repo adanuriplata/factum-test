@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import { Employee } from '../../types/Employee';
 import { paginator, transformDate } from '../../utils';
 import { Pagination } from '../../components';
+import styles from '../../styles/modules/Table.module.scss';
 
 interface TableProps {
   Employees: Employee[];
@@ -24,14 +25,14 @@ export const Table: FC<TableProps> = ({ Employees }): JSX.Element => {
   }, [Employees, currentPag]);
 
   return (
-    <div>
+    <div className={styles.tableContainer}>
       <table>
         <thead>
           <tr>
             <th scope="col">Id</th>
-            <th scope="col">Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Birthday</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Fecha de Nacimiento</th>
           </tr>
         </thead>
         <tbody>
