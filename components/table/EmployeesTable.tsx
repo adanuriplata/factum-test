@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FC, useState } from 'react';
 import { Search, Table } from '../../components';
-import { Employee } from '../../types';
+import { Employee } from '../../types/Employee';
 
 interface EmployeesTableProps {
   employees: Employee[];
