@@ -2,6 +2,7 @@ import {
   ChangeEvent,
   DragEvent,
   DragEventHandler,
+  useEffect,
   useRef,
   useState,
 } from 'react';
@@ -11,7 +12,14 @@ import { PreviewUpload } from '.';
 export const Upload = (): JSX.Element => {
   // drag state
   const [dragActive, setDragActive] = useState(false);
-  const [ImagePrevious, setImagePrevious] = useState<Blob[] | []>([]);
+  const [ImagePreview, setImagePreview] = useState<Blob[] | []>([]);
+  const [savedImages, setSavedImages] = useState<Blob[] | []>([]);
+  const [isLocalStorage, setIsLocalStorage] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsLocalStorage(localStorage.getItem('images') as unknown as boolean);
+  }, []);
+
   // ref
   const inputRef = useRef(null);
 
@@ -24,8 +32,8 @@ export const Upload = (): JSX.Element => {
     reader.readAsDataURL(e[0]);
     reader.onload = (e) => {
       e.preventDefault();
-      setImagePrevious([...ImagePrevious, e.target?.result as unknown as Blob]);
-      console.log(ImagePrevious);
+      setImagePreview([...ImagePreview, e.target?.result as unknown as Blob]);
+      console.log(ImagePreview);
     };
   };
 
@@ -58,50 +66,72 @@ export const Upload = (): JSX.Element => {
     }
   };
 
+  const saveimages = (): void => {
+    const toUpload = savedImages.concat(ImagePreview as []);
+    localStorage.setItem('images', JSON.stringify(toUpload));
+    setImagePreview([]);
+    viewImages();
+  };
+
+  const viewImages = (): void => {
+    const storedNames = JSON.parse(localStorage.getItem('images') as string);
+    setSavedImages(storedNames);
+  };
+
   return (
-    <div style={{ maxWidth: '500px', margin: '0 auto' }}>
-      <form
-        id="form-file-upload"
-        onDragEnter={handleDrag}
-        onSubmit={(e) => e.preventDefault()}
-      >
-        <input
-          ref={inputRef}
-          type="file"
-          id="input-file-upload"
-          multiple={true}
-          onChange={handleChange}
-        />
-        <label
-          id="label-file-upload"
-          htmlFor="input-file-upload"
-          className={dragActive ? 'drag-active' : ''}
-        >
-          <div>
-            <p>Drag and drop your file here</p>
-          </div>
-        </label>
-        {dragActive && (
-          <div
-            id="drag-file-element"
-            onDragEnter={
-              handleDrag as unknown as DragEventHandler<HTMLDivElement>
-            }
-            onDragLeave={
-              handleDrag as unknown as DragEventHandler<HTMLDivElement>
-            }
-            onDragOver={
-              handleDrag as unknown as DragEventHandler<HTMLDivElement>
-            }
-            onDrop={handleDrop as unknown as DragEventHandler<HTMLDivElement>}
-          ></div>
+    <div>
+      <div style={{ paddingBottom: '10px' }}>
+        {isLocalStorage && (
+          <button className="upload-button" onClick={viewImages}>
+            View Saved Images
+          </button>
         )}
-      </form>
-      {ImagePrevious.length ? (
-        <PreviewUpload images={ImagePrevious} />
-      ) : (
-        <div></div>
-      )}
+        {!!savedImages.length && <PreviewUpload images={savedImages} />}
+      </div>
+      <div style={{ maxWidth: '500px', margin: '0 auto' }}>
+        <form
+          id="form-file-upload"
+          onDragEnter={handleDrag}
+          onSubmit={(e) => e.preventDefault()}
+        >
+          <input
+            ref={inputRef}
+            type="file"
+            id="input-file-upload"
+            multiple={true}
+            onChange={handleChange}
+          />
+          <label
+            id="label-file-upload"
+            htmlFor="input-file-upload"
+            className={dragActive ? 'drag-active' : ''}
+          >
+            <div>
+              <p>Drag and drop your file here</p>
+            </div>
+          </label>
+          {dragActive && (
+            <div
+              id="drag-file-element"
+              onDragEnter={
+                handleDrag as unknown as DragEventHandler<HTMLDivElement>
+              }
+              onDragLeave={
+                handleDrag as unknown as DragEventHandler<HTMLDivElement>
+              }
+              onDragOver={
+                handleDrag as unknown as DragEventHandler<HTMLDivElement>
+              }
+              onDrop={handleDrop as unknown as DragEventHandler<HTMLDivElement>}
+            ></div>
+          )}
+        </form>
+        {ImagePreview.length ? (
+          <PreviewUpload images={ImagePreview} handleClick={saveimages} />
+        ) : (
+          <div></div>
+        )}
+      </div>
     </div>
   );
 };

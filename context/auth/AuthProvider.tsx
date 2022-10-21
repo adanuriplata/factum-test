@@ -24,7 +24,6 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
       dispatch({ type: '[Auth] - Login' });
       Cookies.set('token', '675489');
     }
-    console.log('invalido');
   }, []);
 
   const loginUser = (user: string, pass: string): boolean => {

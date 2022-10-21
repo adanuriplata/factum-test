@@ -84,7 +84,11 @@ Instalación
   ```
   yarn lint
   ```
-
+- Usuario y Contraseña de Prueba 
+``` 
+  User: admin
+  Password: root
+  ```
 
 
 

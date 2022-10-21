@@ -4,14 +4,16 @@ import Carousel from 'better-react-carousel';
 
 interface PreviewUploadProps {
   images: Blob[] | [];
+  handleClick?: () => void;
 }
 
-export const PreviewUpload: FC<PreviewUploadProps> = ({ images }) => {
+export const PreviewUpload: FC<PreviewUploadProps> = ({
+  images,
+  handleClick,
+}) => {
   return (
     <div>
-      <div>
-        <h4>Preview</h4>
-      </div>
+      <div>{handleClick ? <h4>Preview</h4> : <p>🗃 Stored</p>}</div>
       <Carousel mobileBreakpoint={300} cols={3} rows={1} gap={3} loop>
         {images.map((e, i) => (
           <Carousel.Item key={i}>
@@ -25,7 +27,11 @@ export const PreviewUpload: FC<PreviewUploadProps> = ({ images }) => {
         ))}
       </Carousel>
       <div>
-        <button>Upload Now</button>
+        {handleClick && (
+          <button className="upload-button" onClick={handleClick}>
+            Upload Now 👆
+          </button>
+        )}
       </div>
     </div>
   );
