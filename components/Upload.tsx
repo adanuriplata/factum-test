@@ -80,9 +80,12 @@
 //   );
 // };
 import { ChangeEvent, useState } from 'react';
+import Image from 'next/image';
 export const Upload = (): JSX.Element => {
-  const [ImagePrevious, setImagePrevious] = useState([]);
-  const changeImage = (e: ChangeEvent<HTMLInputElement>) => {
+  const [ImagePrevious, setImagePrevious] = useState<
+    string | ArrayBuffer | null | never | any
+  >([]);
+  const changeImage = (e: ChangeEvent<HTMLInputElement>): false | undefined => {
     // const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
 
     // if (!allowedExtensions.exec(e.target.files[0])) {
@@ -100,7 +103,7 @@ export const Upload = (): JSX.Element => {
     reader.readAsDataURL(e.target.files[0]);
     reader.onload = (e) => {
       e.preventDefault();
-      setImagePrevious([...ImagePrevious, e.target.result]);
+      setImagePrevious([...ImagePrevious, e.target?.result]);
       console.log(ImagePrevious);
     };
   };
@@ -119,7 +122,7 @@ export const Upload = (): JSX.Element => {
       </div>
       <div>
         {ImagePrevious.map((e) => (
-          <img height="100" width="200" src={e} alt="" />
+          <Image key={e} height="100" width="200" src={e} alt="" />
         ))}
       </div>
     </div>

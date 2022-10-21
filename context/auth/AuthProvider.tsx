@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, useReducer } from 'react';
+import { FC, PropsWithChildren, useEffect, useReducer } from 'react';
 import { AuthContext } from './AuthContext';
 import { authReducer } from './authReducer';
 import Cookies from 'js-cookie';
@@ -6,21 +6,30 @@ import { useRouter } from 'next/router';
 
 export interface AuthState {
   isLogged: boolean;
-  token: string | undefined;
 }
 
 const AUTH_INITIAL_STATE: AuthState = {
   isLogged: false,
-  token: undefined,
 };
 
 export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, AUTH_INITIAL_STATE);
   const router = useRouter();
 
+  useEffect(() => {
+    const token = Cookies.get('token');
+    const isValidToken = token === '675489';
+
+    if (isValidToken) {
+      dispatch({ type: '[Auth] - Login' });
+      Cookies.set('token', '675489');
+    }
+    console.log('invalido');
+  }, []);
+
   const loginUser = (user: string, pass: string): boolean => {
     if (user === 'admin' && pass === 'root') {
-      dispatch({ type: '[Auth] - Login', payload: user });
+      dispatch({ type: '[Auth] - Login' });
       Cookies.set('token', '675489');
       return true;
     }

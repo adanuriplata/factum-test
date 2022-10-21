@@ -1,8 +1,6 @@
 import { AuthState } from './AuthProvider';
 
-type AuthActionType =
-  | { type: '[Auth] - Login'; payload: string }
-  | { type: '[Auth] - Logout' };
+type AuthActionType = { type: '[Auth] - Login' } | { type: '[Auth] - Logout' };
 
 export const authReducer = (state: AuthState, action: AuthActionType) => {
   switch (action.type) {
@@ -10,7 +8,6 @@ export const authReducer = (state: AuthState, action: AuthActionType) => {
       return {
         ...state,
         isLogged: true,
-        token: action.payload,
       };
 
     case '[Auth] - Logout':
